@@ -215,6 +215,13 @@ CURRENT_DATABASE=mongodb
 
 ## Notes and Assumptions
 
+## Swipe Score Calculation
+In addition to the implemented features, the folder includes a conceptual document `SwipeCalculator.md`. 
+This document proposes a methodology for calculating the swipe score, 
+a crucial element in determining user compatibility.
+It details the factors considered and the algorithm used for scoring user interactions,
+providing a theoretical foundation for future enhancements.
+
 - The API is designed for local testing and demonstration.
 - Authentication is simplified for the scope of this exercise.
 - User passwords are hashed for security.
@@ -224,4 +231,4 @@ CURRENT_DATABASE=mongodb
 
 This README provides a comprehensive guide on the structure, functionality, and setup of the API for the Muzz Backend
 Technical Exercise. It is designed to be clear and concise, providing all necessary information for understanding and
-running the application.
+running the application and `SwipeCalculator.md` for future feature development.
