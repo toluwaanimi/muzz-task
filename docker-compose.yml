@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: dating
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+  muzz-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: muzz-api
+    restart: always
+    environment:
+      MONGO_URI: "mongodb://root:examplepassword@mongodb:27017/dating"
+      ENVIRONMENT: "local"
+      PORT: "4000"
+      DATABASE_URL: "mongodb://root:password@mongodb:27017/dating?authSource=admin&authMechanism=SCRAM-SHA-1"
+      DATABASE_NAME: "dating"
+      CURRENT_DATABASE: "mongodb"
+      JWT_SECRET: "secret"
+    ports:
+      - "8080:4000"
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
